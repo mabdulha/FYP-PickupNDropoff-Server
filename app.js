@@ -25,7 +25,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // user routes
-app.post('/register', usersRouter.register);
+app.post('/users/register', usersRouter.register);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

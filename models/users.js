@@ -27,7 +27,8 @@ let UserSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: true
+        required: true,
+        match: /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
     },
     address: {
         type: String,
@@ -37,6 +38,10 @@ let UserSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    avatar: {
+      type: String,
+      required: true
     }
 },
     {

@@ -11,6 +11,7 @@ router.register = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   let user = new User({
+    avatar: req.body.avatar,
     fname: req.body.fname,
     lname: req.body.lname,
     username: req.body.username,
@@ -22,7 +23,7 @@ router.register = (req, res) => {
 
   user.save(function (err) {
     if(err) {
-      res.json({
+      res.status(400).send({
         message: 'user not registered',
         errmsg: err
       });
