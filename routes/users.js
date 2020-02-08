@@ -94,6 +94,11 @@ router.login = (req, res) => {
         errmsg: err
     })
     })
+  }).catch(err => {
+    res.status(500).send({
+      message: 'Authentification failed, Please ensure the email and password are correct',
+        error: err
+    })
   })
 }
 
