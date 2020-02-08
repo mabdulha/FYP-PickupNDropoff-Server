@@ -41,8 +41,7 @@ let UserSchema = new mongoose.Schema({
     },
     avatar: {
       type: String,
-      required: false,
-      default: 'https://firebasestorage.googleapis.com/v0/b/pickupndropoff-fab91.appspot.com/o/avatars%2Fdefault-profile.png?alt=media&token=c0d9df92-b5f6-4526-bfc2-2a27d91519e0'
+      required: false
     }
 },
     {

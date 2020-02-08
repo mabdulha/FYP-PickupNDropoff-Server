@@ -111,6 +111,7 @@ router.login = (req, res) => {
         return res.status(200).send({
           message: 'Successfully Authenticated',
           token: token,
+          user: payload
       })
       }
       res.status(401).send({
