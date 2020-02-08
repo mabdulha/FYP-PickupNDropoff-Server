@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 let User = require('../models/users')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+let dotenv = require('dotenv');
+dotenv.config();
 
 router.register = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -69,28 +72,49 @@ router.register = (req, res) => {
 }
 
 router.login = (req, res) => {
-  User.findOne({ email: req.body.email }).then(user => {
+  /**
+   * Login a user
+   * find the user by username
+   */
+
+  User.findOne({ username: req.body.username }).then(user => {
     if (user.length < 1) {
        // Error 401: Unauthorised
        return res.status(401).send({
-        message: 'Authentification failed, Please ensure the email and password are correct',
+        message: 'Authentification failed, Please ensure the username and password are correct',
         errmsg: err
       })
     }
     bcrypt.compare(req.body.password, user.password, (err, result) => {
       if (err) {
         return res.status(401).send({
-          message: 'Authentification failed, Please ensure the email and password are correct',
+          message: 'Authentification failed, Please ensure the username and password are correct',
           errmsg: err
         })
       }
       if (result) {
+        const payload = {
+          _id: user._id,
+          avatar: user.avatar,
+          fname: user.fname,
+          lname: user.lname,
+          username: user.username,
+          email: user.email,
+          phone: user.phone,
+          address: user.address
+        }
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: '1d'
+        })
+
         return res.status(200).send({
-          message: 'Successfully Authenticated'
+          message: 'Successfully Authenticated',
+          token: token,
       })
       }
       res.status(401).send({
-        message: 'Authentification failed, Please ensure the email and password are correct',
+        message: 'Authentification failed, Please ensure the username and password are correct',
         errmsg: err
     })
     })
