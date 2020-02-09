@@ -1,4 +1,4 @@
-const chai = require('chai')
+import chai from 'chai'
 const server = require('../../../bin/www')
 const expect = chai.expect
 const request = require('supertest')
@@ -9,8 +9,8 @@ describe('Userss',  () => {
       const user = {
         fname: 'Mozeeb',
         lname: 'Abdulha',
-        username: 'mabdulha',
-        email: 'mozeebabdulha@gmail.com',
+        username: 'moozaaa',
+        email: 'mooaaa@gmail.com',
         password: 'secret',
         phone: '0894536791',
         address: 'Kilkenny',

@@ -1,4 +1,4 @@
-let express = require('express')
+import express from 'express'
 let router = express.Router()
 let User = require('../models/users')
 const bcrypt = require('bcrypt')
