@@ -1,4 +1,4 @@
-import express from 'express'
+let express = require('express')
 let router = express.Router()
 let User = require('../models/users')
 const bcrypt = require('bcrypt')
@@ -120,7 +120,7 @@ router.login = (req, res) => {
     })
   }).catch(err => {
     res.status(500).send({
-      message: 'Authentification failed, Please ensure the email and password are correct',
+      message: 'Authentification failed, Please ensure the username and password are correct',
       error: err
     })
   })
