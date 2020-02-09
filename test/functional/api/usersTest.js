@@ -9,8 +9,8 @@ describe('Userss',  () => {
       const user = {
         fname: 'Mozeeb',
         lname: 'Abdulha',
-        username: 'mozeeb',
-        email: 'mozeeb@gmail.com',
+        username: 'mabdulha',
+        email: 'mozeebabdulha@gmail.com',
         password: 'secret',
         phone: '0894536791',
         address: 'Kilkenny',
