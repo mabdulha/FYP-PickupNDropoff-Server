@@ -86,7 +86,7 @@ continuous_delivery:
     - echo "Deployed to production server"
   when: manual
 
-  continuous_deployment:
+continuous_deployment:
   image: ruby:latest
   dependencies:
     - deploy_staging
