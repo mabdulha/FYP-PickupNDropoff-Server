@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express')
+let router = express.Router()
 let User = require('../models/users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-let dotenv = require('dotenv');
-dotenv.config();
+let dotenv = require('dotenv')
+dotenv.config()
 
 router.register = (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Type', 'application/json')
 
   /**
    * Register a new user
@@ -47,14 +47,14 @@ router.register = (req, res) => {
                 password: hash,
                 phone: req.body.phone,
                 address: req.body.address
-              });
+              })
             
               user.save(function (err) {
                 if(err) {
                   res.status(400).send({
                     message: 'User not registered',
                     errmsg: err
-                  });
+                  })
                 }
                 else {
                   res.json({
@@ -79,10 +79,9 @@ router.login = (req, res) => {
 
   User.findOne({ username: req.body.username }).then(user => {
     if (user.length < 1) {
-       // Error 401: Unauthorised
-       return res.status(401).send({
+      // Error 401: Unauthorised
+      return res.status(401).send({
         message: 'Authentification failed, Please ensure the username and password are correct',
-        errmsg: err
       })
     }
     bcrypt.compare(req.body.password, user.password, (err, result) => {
@@ -112,19 +111,19 @@ router.login = (req, res) => {
           message: 'Successfully Authenticated',
           token: token,
           user: payload
-      })
+        })
       }
       res.status(401).send({
         message: 'Authentification failed, Please ensure the username and password are correct',
         errmsg: err
-    })
+      })
     })
   }).catch(err => {
     res.status(500).send({
       message: 'Authentification failed, Please ensure the email and password are correct',
-        error: err
+      error: err
     })
   })
 }
 
-module.exports = router;
+module.exports = router
