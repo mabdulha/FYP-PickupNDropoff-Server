@@ -1,0 +1,4 @@
+file:
+    - ./test/functional/api/usersTest.js
+exit: true
+timeout: 20000
