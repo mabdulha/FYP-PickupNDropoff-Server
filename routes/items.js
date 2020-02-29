@@ -133,4 +133,32 @@ router.deleteItem = (req, res) => {
   })
 }
 
+router.incrementViews = (req, res) => {
+  Item.findById(req.params.id, function (err, item) {
+    if (err) {
+      res.status(404).send({
+        message: 'Cannot find Item associated with that id',
+        errmsg: err
+      })
+    }
+    else {
+      item.views += 1
+      item.save(function (err) {
+        if (err) {
+          res.json({
+            message: 'View could not be incremented',
+            errmsg: err
+          })
+        }
+        else {
+          res.json({
+            message: 'View incremented successfully',
+            data: item
+          })
+        }
+      })
+    }
+  })
+}
+
 module.exports = router
