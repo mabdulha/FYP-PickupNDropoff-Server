@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
 
 let ItemSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: true
   },
@@ -9,7 +9,7 @@ let ItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  images: {
+  imageurl: {
     type: String
   },
   category: {

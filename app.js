@@ -8,6 +8,7 @@ let cors = require('cors')
 
 let indexRouter = require('./routes/index')
 let usersRouter = require('./routes/users')
+let items = require('./routes/items')
 
 let app = express()
 
@@ -28,6 +29,12 @@ app.use('/users', usersRouter)
 // user routes
 app.post('/api/users/register', usersRouter.register)
 app.post('/api/users/login', usersRouter.login)
+
+// item routes
+app.get('/api/items/findall', items.findAll)
+app.get('/api/item/:id', items.findOne)
+
+app.post('/api/item/add', items.addItem)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
