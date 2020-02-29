@@ -8,7 +8,7 @@ dotenv.config()
 const Item = require('../../../models/items')
 const _ = require('lodash')
 
-let server
+let server, validID
 
 
 describe('Itemss',  () => {
@@ -42,6 +42,7 @@ describe('Itemss',  () => {
         size: 'Large'
       })
       const item = await Item.findOne({category: 'Wooden'})
+      validID = item._id
     } catch (error) {
       console.log(error)
     }
@@ -78,6 +79,36 @@ describe('Itemss',  () => {
             done(err)
           }
         })
+    })
+  })
+
+  describe('GET /api/item/:id', () => {
+    describe('when the id is valid', () => {
+      it('should return the item matching the id', done => {
+        request(server)
+          .get(`/api/item/${validID}`)
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end((err, res) => {
+            expect(res.body[0]).to.have.property('title', 'Used Wardrobe')
+            expect(res.body[0]).to.have.property('category', 'Wooden')
+            done(err)
+          })
+      })
+    })
+    describe('when the id is invalid', () => {
+      it('should return the item not found message', done => {
+        request(server)
+          .get('/api/item/123')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(404)
+          .end((err, res) => {
+            expect(res.body.message).include('Item not found')
+            done(err)
+          })
+      })
     })
   })
 })
