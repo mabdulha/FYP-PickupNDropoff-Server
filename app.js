@@ -36,6 +36,8 @@ app.get('/api/item/:id', items.findOne)
 
 app.post('/api/item/add', items.addItem)
 
+app.put('/api/item/update/:id', items.updateItem)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404))

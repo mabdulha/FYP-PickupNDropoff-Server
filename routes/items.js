@@ -71,4 +71,50 @@ router.addItem = (req, res) => {
   })
 }
 
+router.updateItem = (req, res) => {
+  Item.findById(req.params.id, function (err, item) {
+    if (err) {
+      res.status(404).send({
+        message: 'Cannot find item assosiated with that id',
+        errmsg: err
+      })
+    }
+    else {
+      if (req.body.title) {
+        item.title = req.body.title
+      }
+      if (req.body.description) {
+        item.description = req.body.description
+      }
+      if (req.body.imageurl) {
+        item.imageurl = req.body.imageurl
+      }
+      if (req.body.category) {
+        item.category = req.body.category
+      }
+      if (req.body.price) {
+        item.price = req.body.price
+      }
+      if (req.body.size) {
+        item.size = req.body.size
+      }
+
+      item.save(function (err) {
+        if (err) {
+          res.status(406).send({
+            message: 'Item not updated',
+            errmsg: err
+          })
+        }
+        else {
+          res.status(200).send({
+            message: 'Item updated successfully',
+            data: item
+          })
+        }
+      })
+    }
+  })
+}
+
 module.exports = router
