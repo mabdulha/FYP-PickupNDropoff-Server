@@ -37,6 +37,7 @@ app.get('/api/item/:id', items.findOne)
 app.post('/api/item/add', items.addItem)
 
 app.put('/api/item/update/:id', items.updateItem)
+app.put('/api/item/incrementview/:id', items.incrementViews)
 
 app.delete('/api/item/delete/:id', items.deleteItem)
 

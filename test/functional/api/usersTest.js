@@ -50,7 +50,7 @@ describe('Userss',  () => {
     }
   })
 
-  describe('POST /users/', () => {
+  describe('POST /api/users/register', () => {
     it('should register user to the database', () => {
       const user = {
         fname: 'Kamil',
@@ -71,4 +71,20 @@ describe('Userss',  () => {
         })
     })
   })
+
+  // describe('POST /api/users/login', () => {
+  //   it('should login a user when the credentials are correct', () => {
+  //     const credentials = {
+  //       username: 'moz',
+  //       password: 'secret123'
+  //     }
+  //     return request(server)
+  //       .post('/api/users/login')
+  //       .send(credentials)
+  //       .expect(200)
+  //       .then(res => {
+  //         expect(res.body.message).equal('Successfully Authenticated')
+  //       })
+  //   })
+  // })
 })
