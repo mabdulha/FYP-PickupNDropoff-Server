@@ -117,4 +117,20 @@ router.updateItem = (req, res) => {
   })
 }
 
+router.deleteItem = (req, res) => {
+  Item.findByIdAndRemove(req.params.id, function(err){
+    if (err) {
+      res.status(404).send({
+        message: 'Item not deleted',
+        errmsg: err
+      })
+    }
+    else {
+      res.status(200).send({
+        message: 'Item successfully deleted'
+      })
+    }
+  })
+}
+
 module.exports = router

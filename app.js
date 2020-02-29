@@ -38,6 +38,8 @@ app.post('/api/item/add', items.addItem)
 
 app.put('/api/item/update/:id', items.updateItem)
 
+app.delete('/api/item/delete/:id', items.deleteItem)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404))
