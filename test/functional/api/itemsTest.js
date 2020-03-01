@@ -204,4 +204,42 @@ describe('Itemss',  () => {
       })
     })
   })
+
+  describe('PUT /api/item/incrementview/:id', () => {
+    describe('when the id is valid', () => {
+      it('should increment the view on the item and return a message to the user', () => {
+        return request(server)
+          .put(`/api/item/incrementview/${validID}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'View incremented successfully'
+            })
+            expect(res.body.data).to.have.property('views', 1)
+          })
+      })
+      after(() => {
+        return request(server)
+          .get(`/api/item/${validID}`)
+          .set('Application', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body[0]).to.have.property('views', 1)
+          })
+      })
+    })
+    describe('when the id is invalid', () => {
+      it('should return a 404 as id is not valid', () => {
+        return request(server)
+          .put('/api/item/incrementview/123')
+          .expect(404)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Cannot find Item associated with that id'
+            })
+          })
+      })
+    })
+  })
 })
