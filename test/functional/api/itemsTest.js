@@ -140,4 +140,41 @@ describe('Itemss',  () => {
         })
     })
   })
+
+  describe('PUT /api/item/update/:id', () =>  {
+    describe('when the id is valid', () => {
+      it('should update the item and return a message', () => {
+        const updateItem = {
+          title: 'New Updated Item',
+          price: 50.00
+        }
+        return request(server)
+          .put(`/api/item/update/${validID}`)
+          .send(updateItem)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item updated successfully'
+            })
+            expect(res.body.data).to.include({
+              title: 'New Updated Item',
+              price: 50.00
+            })
+          })
+      })
+      after(() => {
+        return request(server)
+          .get(`/api/item/${validID}`)
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body[0]).to.include({
+              title: 'New Updated Item',
+              price: 50.00
+            })
+          })
+      })
+    })
+  })
 })
