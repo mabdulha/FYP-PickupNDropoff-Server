@@ -23,7 +23,7 @@ router.findAll = (req, res) => {
 router.findOne = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  Item.find({
+  Item.findOne({
     '_id': req.params.id
   }, function (err, items) {
     if (err) {
