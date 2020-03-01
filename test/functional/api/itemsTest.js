@@ -91,8 +91,8 @@ describe('Itemss',  () => {
           .expect('Content-Type', /json/)
           .expect(200)
           .end((err, res) => {
-            expect(res.body[0]).to.have.property('title', 'Used Wardrobe')
-            expect(res.body[0]).to.have.property('category', 'Wooden')
+            expect(res.body).to.have.property('title', 'Used Wardrobe')
+            expect(res.body).to.have.property('category', 'Wooden')
             done(err)
           })
       })
@@ -135,8 +135,8 @@ describe('Itemss',  () => {
         .get(`/api/item/${validID}`)
         .expect(200)
         .then(res => {
-          expect(res.body[0]).to.have.property('title', 'Something')
-          expect(res.body[0]).to.have.property('category', 'Test Category')
+          expect(res.body).to.have.property('title', 'Something')
+          expect(res.body).to.have.property('category', 'Test Category')
         })
     })
   })
@@ -169,7 +169,7 @@ describe('Itemss',  () => {
           .expect('Content-Type', /json/)
           .expect(200)
           .then(res => {
-            expect(res.body[0]).to.include({
+            expect(res.body).to.include({
               title: 'New Updated Item',
               price: 50.00
             })
@@ -225,7 +225,7 @@ describe('Itemss',  () => {
           .expect('Content-Type', /json/)
           .expect(200)
           .then(res => {
-            expect(res.body[0]).to.have.property('views', 1)
+            expect(res.body).to.have.property('views', 1)
           })
       })
     })
