@@ -111,4 +111,33 @@ describe('Itemss',  () => {
       })
     })
   })
+
+  describe('POST /api/item/add', () => {
+    it('should add a new item to the database', () => {
+      const item = {
+        title: 'Something',
+        description: 'Test',
+        category: 'Test Category',
+        price: 10.00,
+        size: 'Medium'
+      }
+      return request(server)
+        .post('/api/item/add')
+        .send(item)
+        .expect(200)
+        .then(res => {
+          expect(res.body.message).equal('Item added to database')
+          validID = res.body.data._id
+        })
+    })
+    after(() => {
+      return request(server)
+        .get(`/api/item/${validID}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body[0]).to.have.property('title', 'Something')
+          expect(res.body[0]).to.have.property('category', 'Test Category')
+        })
+    })
+  })
 })
