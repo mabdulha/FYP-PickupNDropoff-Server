@@ -177,4 +177,31 @@ describe('Itemss',  () => {
       })
     })
   })
+
+  describe('DELETE /api/item/delete/:id', () => {
+    describe('when the id is valid', () => {
+      it('should delete the item and return a message', () => {
+        return request(server)
+          .delete(`/api/item/delete/${validID}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item successfully deleted'
+            })
+          })
+      })
+    })
+    describe('when the id is invalid', () => {
+      it('should return a message to the user when the item cannot be found by the id', () => {
+        request(server)
+          .delete('/api/item/delete/123')
+          .expect(404)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item not deleted'
+            })
+          })
+      })
+    })
+  })
 })
