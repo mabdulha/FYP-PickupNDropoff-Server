@@ -1,6 +1,7 @@
 let express = require('express')
 let router = express.Router()
 let Item = require('../models/items')
+let User = require('../models/users')
 
 router.findAll = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
@@ -39,6 +40,34 @@ router.findOne = (req, res) => {
     } 
     else {
       res.send(JSON.stringify(items, null, 5))
+    }
+  })
+}
+
+router.findItemByUser = (req, res) => {
+  User.findById(req.params.id, function (err) {
+    if (err) {
+      res.status(404).send({
+        message: 'User does not exist',
+        errmsg: err
+      })
+    }
+    else {
+      Item.find({
+        userID: req.params.id
+      }, function (err, items) {
+        if (err) {
+          res.status(404).send(err)
+        }
+        else if (items.length > 0) {
+          res.send(items)
+        }
+        else {
+          res.status(204).send({
+            message: 'No items for the given user id'
+          })
+        }
+      })
     }
   })
 }

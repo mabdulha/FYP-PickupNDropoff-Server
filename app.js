@@ -33,6 +33,7 @@ app.post('/api/users/login', usersRouter.login)
 // item routes
 app.get('/api/items/findall', items.findAll)
 app.get('/api/item/:id', items.findOne)
+app.get('/api/user/:userID/items', items.findItemByUser)
 
 app.post('/api/item/add', items.addItem)
 
