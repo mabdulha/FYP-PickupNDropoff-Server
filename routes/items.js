@@ -54,7 +54,7 @@ router.findItemByUser = (req, res) => {
     }
     else {
       Item.find({
-        userID: req.params.id
+        userID: req.params.userID
       }, function (err, items) {
         if (err) {
           res.status(404).send(err)
