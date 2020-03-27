@@ -8,6 +8,7 @@ let cors = require('cors')
 
 let indexRouter = require('./routes/index')
 let usersRouter = require('./routes/users')
+let driversRouter = require('./routes/drivers')
 let items = require('./routes/items')
 
 let app = express()
@@ -29,6 +30,10 @@ app.use('/users', usersRouter)
 // user routes
 app.post('/api/users/register', usersRouter.register)
 app.post('/api/users/login', usersRouter.login)
+
+// driver routes
+app.post('/api/drivers/register', driversRouter.register)
+app.post('/api/drivers/login', driversRouter.login)
 
 // item routes
 app.get('/api/items/findall', items.findAll)
