@@ -44,10 +44,10 @@ router.register = (req, res) => {
           driver.save(function (err) {
             if(err) {
               res.status(400).send({
-                message: 'Driver not registered',
+                message: 'Driver not registered, Please upload Driver License',
                 errmsg: err
               })
-            }
+            } 
             else {
               res.json({
                 message: 'Driver registered successfully',
@@ -84,12 +84,12 @@ router.login = (req, res) => {
       if (result) {
         const payload = {
           _id: driver._id,
-          fname: req.body.fname,
-          lname: req.body.lname,
-          email: req.body.email,
-          phone: req.body.phone,
-          license: req.body.license,
-          size: req.body.size
+          fname: driver.fname,
+          lname: driver.lname,
+          email: driver.email,
+          phone: driver.phone,
+          license: driver.license,
+          size: driver.size
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
