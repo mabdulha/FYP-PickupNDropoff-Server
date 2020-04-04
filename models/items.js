@@ -24,6 +24,46 @@ let ItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  pLine1: {
+    type: String,
+    required: true
+  },
+  pLine2: {
+    type: String,
+    required: false
+  },
+  pTown: {
+    type: String,
+    required: true
+  },
+  pCounty: {
+    type: String,
+    required: true
+  },
+  pEircode: {
+    type: String,
+    required: true
+  },
+  dLine1: {
+    type: String,
+    required: false
+  },
+  dLine2: {
+    type: String,
+    required: false
+  },
+  dTown: {
+    type: String,
+    required: false
+  },
+  dCounty: {
+    type: String,
+    required: false
+  },
+  dEircode: {
+    type: String,
+    required: false
+  },
   views: {
     type: Number,
     default: 0

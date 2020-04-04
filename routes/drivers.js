@@ -38,7 +38,12 @@ router.register = (req, res) => {
             password: hash,
             phone: req.body.phone,
             license: req.body.license,
-            size: req.body.size
+            size: req.body.size,
+            aLine1: req.body.aLine1,
+            aLine2: req.body.aLine2,
+            aTown: req.body.aTown,
+            aCounty: req.body.aCounty,
+            aEircode: req.body.aEircode
           })
             
           driver.save(function (err) {
@@ -89,7 +94,12 @@ router.login = (req, res) => {
           email: driver.email,
           phone: driver.phone,
           license: driver.license,
-          size: driver.size
+          size: driver.size,
+          aLine1: driver.aLine1,
+          aLine2: driver.aLine2,
+          aTown: driver.aLine2,
+          aCounty: driver.aCounty,
+          aEircode: driver.aEircode
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {

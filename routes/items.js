@@ -82,6 +82,16 @@ router.addItem = (req, res) => {
   item.category = req.body.category
   item.price = req.body.price
   item.size = req.body.size
+  item.pLine1 = req.body.pLine1
+  item.pLine2 = req.body.pLine2
+  item.pTown = req.body.pTown
+  item.pCounty = req.body.pCounty
+  item.pEircode = req.body.pEircode
+  item.dLine1 = req.body.dLine1
+  item.dLine2 = req.body.dLine2
+  item.dTown = req.body.dTown
+  item.dCounty = req.body.dCounty
+  item.dEircode = req.body.dEircode
   item.userID = req.body.userID
 
   item.save(function (err) {
@@ -126,6 +136,36 @@ router.updateItem = (req, res) => {
       }
       if (req.body.size) {
         item.size = req.body.size
+      }
+      if (req.body.pLine1) {
+        item.pLine1 = req.body.pLine1
+      }
+      if (req.body.pLine2) {
+        item.pLine2 = req.body.pLine2
+      }
+      if (req.body.pTown) {
+        item.pTown = req.body.pTown
+      }
+      if (req.body.pCounty) {
+        item.pCounty = req.body.pCounty
+      }
+      if (req.body.pEircode) {
+        item.pEircode = req.body.pEircode
+      }
+      if (req.body.dLine1) {
+        item.dLine1 = req.body.dLine1
+      }
+      if (req.body.dLine2) {
+        item.dLine2 = req.body.dLine2
+      }
+      if (req.body.dTown) {
+        item.dTown = req.body.dTown
+      }
+      if (req.body.dCounty) {
+        item.dCounty = req.body.dCounty
+      }
+      if (req.body.dEircode) {
+        item.dEircode = req.body.dEircode
       }
 
       item.save(function (err) {

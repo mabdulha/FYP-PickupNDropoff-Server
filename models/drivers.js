@@ -33,7 +33,28 @@ let DriverSchema = new mongoose.Schema({
   size: {
     type: String,
     required: true
-  }
+  },
+  aLine1: {
+    type: String,
+    required: true
+  },
+  aLine2: {
+    type: String,
+    required: true
+  },
+  aTown: {
+    type: String,
+    required: true
+  },
+  aCounty: {
+    type: String,
+    required: true
+  },
+  aEircode: {
+    type: String,
+    required: true
+  },
+  preferredTowns: [String]
 },
 {
   collection: 'drivers'
