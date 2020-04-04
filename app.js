@@ -9,7 +9,8 @@ let cors = require('cors')
 let indexRouter = require('./routes/index')
 let usersRouter = require('./routes/users')
 let driversRouter = require('./routes/drivers')
-let items = require('./routes/items')
+let itemsRouter = require('./routes/items')
+let townsRouter = require('./routes/towns')
 
 let app = express()
 
@@ -36,16 +37,20 @@ app.post('/api/drivers/register', driversRouter.register)
 app.post('/api/drivers/login', driversRouter.login)
 
 // item routes
-app.get('/api/items/findall', items.findAll)
-app.get('/api/item/:id', items.findOne)
-app.get('/api/user/:userID/items', items.findItemByUser)
+app.get('/api/items/findall', itemsRouter.findAll)
+app.get('/api/item/:id', itemsRouter.findOne)
+app.get('/api/user/:userID/items', itemsRouter.findItemByUser)
 
-app.post('/api/item/add', items.addItem)
+app.post('/api/item/add', itemsRouter.addItem)
 
-app.put('/api/item/update/:id', items.updateItem)
-app.put('/api/item/incrementview/:id', items.incrementViews)
+app.put('/api/item/update/:id', itemsRouter.updateItem)
+app.put('/api/item/incrementview/:id', itemsRouter.incrementViews)
 
-app.delete('/api/item/delete/:id', items.deleteItem)
+app.delete('/api/item/delete/:id', itemsRouter.deleteItem)
+
+// town routes
+app.get('/api/counties/findall', townsRouter.findAllCounties)
+app.get('/api/counties/town', townsRouter.findTown)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
