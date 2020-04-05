@@ -31,10 +31,6 @@ let UserSchema = new mongoose.Schema({
     required: true,
     match: /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
   },
-  address: {
-    type: String,
-    required: true
-  },
   admin: {
     type: Boolean,
     required: true,
@@ -43,6 +39,26 @@ let UserSchema = new mongoose.Schema({
   avatar: {
     type: String,
     required: false
+  },
+  aLine1: {
+    type: String,
+    required: true
+  },
+  aLine2: {
+    type: String,
+    required: false
+  },
+  aTown: {
+    type: String,
+    required: true
+  },
+  aCounty: {
+    type: String,
+    required: true
+  },
+  aEircode: {
+    type: String,
+    required: true
   }
 },
 {

@@ -46,7 +46,11 @@ router.register = (req, res) => {
                 email: req.body.email,
                 password: hash,
                 phone: req.body.phone,
-                address: req.body.address
+                aLine1: req.body.aLine1,
+                aLine2: req.body.aLine2,
+                aTown: req.body.aTown,
+                aCounty: req.body.aCounty,
+                aEircode: req.body.aEircode
               })
             
               user.save(function (err) {
@@ -100,7 +104,11 @@ router.login = (req, res) => {
           username: user.username,
           email: user.email,
           phone: user.phone,
-          address: user.address
+          aLine1: user.aLine1,
+          aLine2: user.aLine2,
+          aTown: user.aTown,
+          aCounty: user.aCounty,
+          aEircode: user.aEircode,
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {

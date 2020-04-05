@@ -40,7 +40,7 @@ let DriverSchema = new mongoose.Schema({
   },
   aLine2: {
     type: String,
-    required: true
+    required: false
   },
   aTown: {
     type: String,
