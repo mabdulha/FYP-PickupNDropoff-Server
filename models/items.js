@@ -44,6 +44,13 @@ let ItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  pGeometry: [
+    {
+      _id: false,
+      plat: {type: Number},
+      plng: {type: Number}
+    }
+  ],
   dLine1: {
     type: String,
     required: false
@@ -64,6 +71,13 @@ let ItemSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  dGeometry: [
+    {
+      _id: false,
+      dlat: {type: Number},
+      dlng: {type: Number}
+    }
+  ],
   views: {
     type: Number,
     default: 0

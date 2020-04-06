@@ -43,7 +43,8 @@ router.register = (req, res) => {
             aLine2: req.body.aLine2,
             aTown: req.body.aTown,
             aCounty: req.body.aCounty,
-            aEircode: req.body.aEircode
+            aEircode: req.body.aEircode,
+            preferredTowns: req.body.preferredTowns
           })
             
           driver.save(function (err) {

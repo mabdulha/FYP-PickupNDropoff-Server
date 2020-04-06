@@ -87,11 +87,19 @@ router.addItem = (req, res) => {
   item.pTown = req.body.pTown
   item.pCounty = req.body.pCounty
   item.pEircode = req.body.pEircode
+  item.pGeometry.push({
+    plat: req.body.plat,
+    plng: req.body.plng
+  })
   item.dLine1 = req.body.dLine1
   item.dLine2 = req.body.dLine2
   item.dTown = req.body.dTown
   item.dCounty = req.body.dCounty
-  item.dEircode = req.body.dEircode
+  item.dEircode = req.body.dEircode,
+  item.dGeometry.push({
+    dlat: req.body.dlat,
+    dlng: req.body.dlng
+  })
   item.userID = req.body.userID
 
   item.save(function (err) {
@@ -152,6 +160,12 @@ router.updateItem = (req, res) => {
       if (req.body.pEircode) {
         item.pEircode = req.body.pEircode
       }
+      if (req.body.plat) {
+        item.plat = req.body.plat
+      }
+      if (req.body.plng) {
+        item.plng = req.body.plng
+      }
       if (req.body.dLine1) {
         item.dLine1 = req.body.dLine1
       }
@@ -166,6 +180,12 @@ router.updateItem = (req, res) => {
       }
       if (req.body.dEircode) {
         item.dEircode = req.body.dEircode
+      }
+      if (req.body.dlat) {
+        item.dlat = req.body.dlat
+      }
+      if (req.body.dlng) {
+        item.dlng = req.body.dlng
       }
 
       item.save(function (err) {
