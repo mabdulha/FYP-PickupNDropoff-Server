@@ -44,4 +44,27 @@ router.findTown = (req, res) => {
   })
 }
 
+router.findTowns = (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+
+  Town.find({
+    'county': req.params.county
+  }, function (err, towns) {
+    if (err) {
+      res.status(404).send({
+        message: 'No Towns Found',
+        errmsg: err
+      })
+    }
+    else if (towns.length === 0) {
+      res.status(204).send({
+        message: 'Cannot find any towns'
+      })
+    }
+    else {
+      res.send(JSON.stringify(towns, null, 5))
+    }
+  })
+}
+
 module.exports = router

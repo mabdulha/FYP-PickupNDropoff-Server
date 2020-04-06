@@ -51,6 +51,7 @@ app.delete('/api/item/delete/:id', itemsRouter.deleteItem)
 // town routes
 app.get('/api/counties/findall', townsRouter.findAllCounties)
 app.get('/api/counties/town', townsRouter.findTown)
+app.get('/api/counties/:county/town', townsRouter.findTowns)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
