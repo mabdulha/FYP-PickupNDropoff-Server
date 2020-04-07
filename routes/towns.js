@@ -3,19 +3,6 @@ let router = express.Router()
 let Town = require('../models/towns')
 let Fuse = require('fuse.js')
 
-router.findAllCounties = (req, res) => {
-  res.setHeader('Content-Type', 'application/json')
-  
-  Town.find(function (err, counties){
-    if (err) {
-      res.send(err)
-    }
-    else {
-      res.send(JSON.stringify(counties, null, 5))
-    }
-  }).select('county')
-}
-
 router.findTown = (req, res) => {
 
   Town.find(function (err, counties) {
@@ -47,6 +34,7 @@ router.findTown = (req, res) => {
 router.findTowns = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
+  let mysort = { town: 1 }
   Town.find({
     'county': req.params.county
   }, function (err, towns) {
@@ -64,7 +52,7 @@ router.findTowns = (req, res) => {
     else {
       res.send(JSON.stringify(towns, null, 5))
     }
-  })
+  }).sort(mysort)
 }
 
 module.exports = router

@@ -11,6 +11,7 @@ let usersRouter = require('./routes/users')
 let driversRouter = require('./routes/drivers')
 let itemsRouter = require('./routes/items')
 let townsRouter = require('./routes/towns')
+let countiesRouter = require('./routes/counties')
 
 let app = express()
 
@@ -49,9 +50,11 @@ app.put('/api/item/incrementview/:id', itemsRouter.incrementViews)
 app.delete('/api/item/delete/:id', itemsRouter.deleteItem)
 
 // town routes
-app.get('/api/counties/findall', townsRouter.findAllCounties)
-app.get('/api/counties/town', townsRouter.findTown)
-app.get('/api/counties/:county/town', townsRouter.findTowns)
+app.get('/api/towns', townsRouter.findTown)
+app.get('/api/:county/towns', townsRouter.findTowns)
+
+// county routes
+app.get('/api/counties/findall', countiesRouter.findAllCounties)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
