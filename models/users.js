@@ -59,7 +59,14 @@ let UserSchema = new mongoose.Schema({
   aEircode: {
     type: String,
     required: true
-  }
+  },
+  aGeometry: [
+    {
+      _id: false,
+      alat: {type: Number},
+      alng: {type: Number}
+    }
+  ],
 },
 {
   collection: 'users'

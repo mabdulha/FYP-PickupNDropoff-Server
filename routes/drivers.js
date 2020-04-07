@@ -31,21 +31,24 @@ router.register = (req, res) => {
           })
         }
         else {
-          let driver = new Driver({
-            fname: req.body.fname,
-            lname: req.body.lname,
-            email: req.body.email,
-            password: hash,
-            phone: req.body.phone,
-            license: req.body.license,
-            size: req.body.size,
-            aLine1: req.body.aLine1,
-            aLine2: req.body.aLine2,
-            aTown: req.body.aTown,
-            aCounty: req.body.aCounty,
-            aEircode: req.body.aEircode,
-            preferredTowns: req.body.preferredTowns
+          let driver = new Driver()
+          driver.fname = req.body.fname,
+          driver.lname = req.body.lname,
+          driver.email = req.body.email,
+          driver.password = hash,
+          driver.phone = req.body.phone,
+          driver.license = req.body.license,
+          driver.size = req.body.size,
+          driver.aLine1 = req.body.aLine1,
+          driver.aLine2 = req.body.aLine2,
+          driver.aTown = req.body.aTown,
+          driver.aCounty = req.body.aCounty,
+          driver.aEircode = req.body.aEircode,
+          driver.aGeometry.push({
+            alat: req.body.alat,
+            alng: req.body.alng
           })
+          driver.preferredTowns = req.body.preferredTowns
             
           driver.save(function (err) {
             if(err) {
@@ -100,7 +103,10 @@ router.login = (req, res) => {
           aLine2: driver.aLine2,
           aTown: driver.aLine2,
           aCounty: driver.aCounty,
-          aEircode: driver.aEircode
+          aEircode: driver.aEircode,
+          aGeometry: driver.aGeometry,
+          alat: driver.alat,
+          alng: driver.alng
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {

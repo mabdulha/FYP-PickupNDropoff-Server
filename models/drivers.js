@@ -54,6 +54,13 @@ let DriverSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  aGeometry: [
+    {
+      _id: false,
+      alat: {type: Number},
+      alng: {type: Number}
+    }
+  ],
   preferredTowns: {
     type: String,
     required: false

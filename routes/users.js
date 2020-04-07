@@ -38,20 +38,23 @@ router.register = (req, res) => {
               })
             }
             else {
-              let user = new User({
-                avatar: req.body.avatar,
-                fname: req.body.fname,
-                lname: req.body.lname,
-                username: req.body.username,
-                email: req.body.email,
-                password: hash,
-                phone: req.body.phone,
-                aLine1: req.body.aLine1,
-                aLine2: req.body.aLine2,
-                aTown: req.body.aTown,
-                aCounty: req.body.aCounty,
-                aEircode: req.body.aEircode
+              let user = new User()
+              user.fname = req.body.fname,
+              user.lname = req.body.lname,
+              user.username = req.body.username,
+              user.email = req.body.email,
+              user.password = hash,
+              user.phone = req.body.phone,
+              user.aLine1 = req.body.aLine1,
+              user.aLine2 = req.body.aLine2,
+              user.aTown = req.body.aTown,
+              user.aCounty = req.body.aCounty,
+              user.aEircode = req.body.aEircode
+              user.aGeometry.push({
+                alat: req.body.alat,
+                alng: req.body.alng
               })
+              user.avatar = req.body.avatar,
             
               user.save(function (err) {
                 if(err) {
@@ -109,6 +112,9 @@ router.login = (req, res) => {
           aTown: user.aTown,
           aCounty: user.aCounty,
           aEircode: user.aEircode,
+          aGeometry: user.aGeometry,
+          alat: user.alat,
+          alng: user.alng
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
