@@ -78,12 +78,22 @@ let ItemSchema = new mongoose.Schema({
       dlng: {type: Number}
     }
   ],
+  buyerID: {
+    type: mongoose.Schema.Types.ObjectId
+  },
   views: {
     type: Number,
     default: 0
   },
   userID: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId
+  },
+  status: {
+    type: String,
+    required: true
+  },
+  datetime: {
+    type: String
   }
 },
 {

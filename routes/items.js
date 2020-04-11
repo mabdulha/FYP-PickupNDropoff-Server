@@ -101,6 +101,9 @@ router.addItem = (req, res) => {
     dlng: req.body.dlng
   })
   item.userID = req.body.userID
+  item.buyerID = req.body.buyerID
+  item.status = req.body.status
+  item.datetime = req.body.datetime
 
   item.save(function (err) {
     if (err) {
@@ -186,6 +189,12 @@ router.updateItem = (req, res) => {
       }
       if (req.body.dlng) {
         item.dlng = req.body.dlng
+      }
+      if (req.body.status) {
+        item.status = req.body.status
+      }
+      if (req.body.datetime) {
+        item.datetime = req.body.datetime
       }
 
       item.save(function (err) {
