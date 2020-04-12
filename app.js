@@ -41,6 +41,7 @@ app.post('/api/drivers/login', driversRouter.login)
 app.get('/api/items/findall', itemsRouter.findAll)
 app.get('/api/item/:id', itemsRouter.findOne)
 app.get('/api/user/:userID/items', itemsRouter.findItemByUser)
+app.get('/api/items/find/:town/fordelivery', itemsRouter.findItemForDelivery)
 
 app.post('/api/item/add', itemsRouter.addItem)
 

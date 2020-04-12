@@ -6,7 +6,9 @@ let User = require('../models/users')
 router.findAll = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
-  Item.find(function (err, items) {
+  Item.find({
+    status: 'Available'
+  } ,function (err, items) {
     if (err) {
       res.status(404).send(err)
     } 
@@ -254,6 +256,27 @@ router.incrementViews = (req, res) => {
             data: item
           })
         }
+      })
+    }
+  })
+}
+
+router.findItemForDelivery = (req, res) => {
+  Item.find({
+    status: 'To Deliver',
+    dTown: { $in: req.params.town }
+  }, (err, items) => {
+    if (err) {
+      res.status(404).send({
+        errmsg: err
+      })
+    }
+    else if (items.length > 0) {
+      res.json(items)
+    }
+    else {
+      res.send({
+        message: 'No items have been found'
       })
     }
   })
