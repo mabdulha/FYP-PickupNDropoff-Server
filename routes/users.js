@@ -6,6 +6,28 @@ const jwt = require('jsonwebtoken')
 let dotenv = require('dotenv')
 dotenv.config()
 
+router.findOne = (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+
+  User.findOne({
+    '_id': req.params.id
+  }, function (err, user) {
+    if (err) {
+      res.status(404).send({
+        message: 'User not found',
+        errmsg: err
+      })
+    } else if (user.length === 0) {
+      res.status(204).send({
+        message: 'Item doesnt exist'
+      })
+    } 
+    else {
+      res.send(JSON.stringify(user, null, 5))
+    }
+  })
+}
+
 router.register = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 

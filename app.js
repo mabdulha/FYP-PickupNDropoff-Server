@@ -30,10 +30,14 @@ app.use('/', indexRouter)
 app.use('/users', usersRouter)
 
 // user routes
+app.get('/api/user/:id', usersRouter.findOne)
+
 app.post('/api/users/register', usersRouter.register)
 app.post('/api/users/login', usersRouter.login)
 
 // driver routes
+app.get('/api/driver/:id', driversRouter.findOne)
+
 app.post('/api/drivers/register', driversRouter.register)
 app.post('/api/drivers/login', driversRouter.login)
 
