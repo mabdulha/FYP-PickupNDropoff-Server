@@ -84,6 +84,9 @@ let ItemSchema = new mongoose.Schema({
   driverID: {
     type: mongoose.Schema.Types.ObjectId
   },
+  estCharge: {
+    type: Number
+  },
   views: {
     type: Number,
     default: 0

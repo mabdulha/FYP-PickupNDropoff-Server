@@ -205,6 +205,9 @@ router.updateItem = (req, res) => {
       if (req.body.buyerID) {
         item.buyerID = req.body.buyerID
       }
+      if (req.body.estCharge) {
+        item.estCharge = req.body.estCharge
+      }
 
       item.save(function (err) {
         if (err) {
