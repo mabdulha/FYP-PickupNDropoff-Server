@@ -123,12 +123,13 @@ router.login = (req, res) => {
           size: driver.size,
           aLine1: driver.aLine1,
           aLine2: driver.aLine2,
-          aTown: driver.aLine2,
+          aTown: driver.aTown,
           aCounty: driver.aCounty,
           aEircode: driver.aEircode,
           aGeometry: driver.aGeometry,
           alat: driver.alat,
-          alng: driver.alng
+          alng: driver.alng,
+          preferredTowns: driver.preferredTowns
         }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {

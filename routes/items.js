@@ -264,7 +264,7 @@ router.incrementViews = (req, res) => {
 router.findItemForDelivery = (req, res) => {
   Item.find({
     status: 'To Deliver',
-    dTown: { $in: req.params.town }
+    dTown: { $in: req.params.town.replace('%20', ' ') }
   }, (err, items) => {
     if (err) {
       res.status(404).send({
