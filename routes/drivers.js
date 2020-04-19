@@ -1,6 +1,7 @@
 let express = require('express')
 let router = express.Router()
 let Driver = require('../models/drivers')
+let Item = require('../models/items')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 let dotenv = require('dotenv')
@@ -152,6 +153,28 @@ router.login = (req, res) => {
       message: 'Authentification failed, Please ensure the email and password are correct',
       error: err
     })
+  })
+}
+
+router.findDeliveriesByDriver = (req, res) => {
+  Driver.findById(req.params.id, function (err, driver) {
+    if (err) {
+      res.status(404).json({
+        message: 'Driver not found by id',
+        errmsg: err
+      })
+    } else {
+      Item.find({
+        driverID: driver._id
+      }, function (err, items) {
+        if (err) {
+          res.json(err)
+        }
+        else {
+          res.json(items)
+        }
+      })
+    } 
   })
 }
 

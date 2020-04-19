@@ -81,6 +81,9 @@ let ItemSchema = new mongoose.Schema({
   buyerID: {
     type: mongoose.Schema.Types.ObjectId
   },
+  driverID: {
+    type: mongoose.Schema.Types.ObjectId
+  },
   views: {
     type: Number,
     default: 0

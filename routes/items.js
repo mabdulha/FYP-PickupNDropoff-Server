@@ -106,6 +106,7 @@ router.addItem = (req, res) => {
   item.buyerID = req.body.buyerID
   item.status = req.body.status
   item.datetime = req.body.datetime
+  item.driverID = req.body.driverID
 
   item.save(function (err) {
     if (err) {
@@ -197,6 +198,12 @@ router.updateItem = (req, res) => {
       }
       if (req.body.datetime) {
         item.datetime = req.body.datetime
+      }
+      if (req.body.driverID) {
+        item.driverID = req.body.driverID
+      }
+      if (req.body.buyerID) {
+        item.buyerID = req.body.buyerID
       }
 
       item.save(function (err) {

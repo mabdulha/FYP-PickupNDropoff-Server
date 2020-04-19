@@ -37,6 +37,7 @@ app.post('/api/users/login', usersRouter.login)
 
 // driver routes
 app.get('/api/driver/:id', driversRouter.findOne)
+app.get('/api/driver/:id/deliveries', driversRouter.findDeliveriesByDriver)
 
 app.post('/api/drivers/register', driversRouter.register)
 app.post('/api/drivers/login', driversRouter.login)
