@@ -155,105 +155,107 @@ describe('Itemss',  () => {
     })
   })
 
-  //   describe('PUT /api/item/update/:id', () =>  {
-  //     describe('when the id is valid', () => {
-  //       it('should update the item and return a message', () => {
-  //         const updateItem = {
-  //           title: 'New Updated Item',
-  //           price: 50.00
-  //         }
-  //         return request(server)
-  //           .put(`/api/item/update/${validID}`)
-  //           .send(updateItem)
-  //           .expect(200)
-  //           .then(res => {
-  //             expect(res.body).to.include({
-  //               message: 'Item updated successfully'
-  //             })
-  //             expect(res.body.data).to.include({
-  //               title: 'New Updated Item',
-  //               price: 50.00
-  //             })
-  //           })
-  //       })
-  //       after(() => {
-  //         return request(server)
-  //           .get(`/api/item/${validID}`)
-  //           .set('Accept', 'application/json')
-  //           .expect('Content-Type', /json/)
-  //           .expect(200)
-  //           .then(res => {
-  //             expect(res.body).to.include({
-  //               title: 'New Updated Item',
-  //               price: 50.00
-  //             })
-  //           })
-  //       })
-  //     })
-  //   })
+  describe('PUT /api/item/update/:id', () =>  {
+    describe('when the id is valid', () => {
+      it('should update the item and return a message', () => {
+        const updateItem = {
+          title: 'New Updated Item',
+          price: 50.00
+        }
+        return request(server)
+          .put(`/api/item/update/${validID}`)
+          .send(updateItem)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item updated successfully'
+            })
+            expect(res.body.data).to.include({
+              title: 'New Updated Item',
+              price: 50.00
+            })
+          })
+      })
+      after(() => {
+        return request(server)
+          .get(`/api/item/${validID}`)
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              title: 'New Updated Item',
+              price: 50.00
+            })
+          })
+      })
+    })
+  })
 
-  //   describe('DELETE /api/item/delete/:id', () => {
-  //     describe('when the id is valid', () => {
-  //       it('should delete the item and return a message', () => {
-  //         return request(server)
-  //           .delete(`/api/item/delete/${validID}`)
-  //           .expect(200)
-  //           .then(res => {
-  //             expect(res.body).to.include({
-  //               message: 'Item successfully deleted'
-  //             })
-  //           })
-  //       })
-  //     })
-  //     describe('when the id is invalid', () => {
-  //       it('should return a message to the user when the item cannot be found by the id', () => {
-  //         request(server)
-  //           .delete('/api/item/delete/123')
-  //           .expect(404)
-  //           .then(res => {
-  //             expect(res.body).to.include({
-  //               message: 'Item not deleted'
-  //             })
-  //           })
-  //       })
-  //     })
-  //   })
+  describe('PUT /api/item/incrementview/:id', () => {
+    describe('when the id is valid', () => {
+      it('should increment the view on the item and return a message to the user', () => {
+        console.log('put views id ' + validID)
+        return request(server)
+          .put(`/api/item/incrementview/${validID}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'View incremented successfully'
+            })
+            expect(res.body.data).to.have.property('views', 1)
+          })
+      })
+      after(() => {
+        console.log('put views id ' + validID)
+        return request(server)
+          .get(`/api/item/${validID}`)
+          .set('Application', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.have.property('views', 1)
+          })
+      })
+    })
+    describe('when the id is invalid', () => {
+      it('should return a 404 as id is not valid', () => {
+        return request(server)
+          .put('/api/item/incrementview/123')
+          .expect(404)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Cannot find Item associated with that id'
+            })
+          })
+      })
+    })
+  })
 
-//   describe('PUT /api/item/incrementview/:id', () => {
-//     describe('when the id is valid', () => {
-//       it('should increment the view on the item and return a message to the user', () => {
-//         return request(server)
-//           .put(`/api/item/incrementview/${validID}`)
-//           .expect(200)
-//           .then(res => {
-//             expect(res.body).to.include({
-//               message: 'View incremented successfully'
-//             })
-//             expect(res.body.data).to.have.property('views', 1)
-//           })
-//       })
-//       after(() => {
-//         return request(server)
-//           .get(`/api/item/${validID}`)
-//           .set('Application', 'application/json')
-//           .expect('Content-Type', /json/)
-//           .expect(200)
-//           .then(res => {
-//             expect(res.body).to.have.property('views', 1)
-//           })
-//       })
-//     })
-//     describe('when the id is invalid', () => {
-//       it('should return a 404 as id is not valid', () => {
-//         return request(server)
-//           .put('/api/item/incrementview/123')
-//           .expect(404)
-//           .then(res => {
-//             expect(res.body).to.include({
-//               message: 'Cannot find Item associated with that id'
-//             })
-//           })
-//       })
-//     })
-//   })
+  describe('DELETE /api/item/delete/:id', () => {
+    describe('when the id is valid', () => {
+      it('should delete the item and return a message', () => {
+        return request(server)
+          .delete(`/api/item/delete/${validID}`)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item successfully deleted'
+            })
+          })
+      })
+    })
+    describe('when the id is invalid', () => {
+      it('should return a message to the user when the item cannot be found by the id', () => {
+        request(server)
+          .delete('/api/item/delete/123')
+          .expect(404)
+          .then(res => {
+            expect(res.body).to.include({
+              message: 'Item not deleted'
+            })
+          })
+      })
+    })
+  })
 })
