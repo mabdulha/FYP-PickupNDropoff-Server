@@ -9,9 +9,7 @@ let ItemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  imageurl: {
-    type: String
-  },
+  imageurl: [],
   category: {
     type: String,
     required: true

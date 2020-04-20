@@ -96,7 +96,7 @@ router.addItem = (req, res) => {
   item.dLine1 = req.body.dLine1
   item.dLine2 = req.body.dLine2
   item.dTown = req.body.dTown
-  item.dCounty = req.body.dCounty
+  item.dCounty = req.body.dCounty 
   item.dEircode = req.body.dEircode,
   item.dGeometry.push({
     dlat: req.body.dlat,
@@ -274,10 +274,10 @@ router.incrementViews = (req, res) => {
 router.findItemForDelivery = (req, res) => {
 
   let cleanTown = req.params.town.replace('%20', ' ')
-  let townArray = cleanTown.valueOf().split(',')
-
+  let townArray = cleanTown.split(',')
   Item.find({
-    dTown: { $in:  townArray }
+    dTown: { $in: townArray },
+    pTown: { $in: townArray }
   }, (err, items) => {
     if (err) {
       res.status(404).send({
@@ -288,7 +288,7 @@ router.findItemForDelivery = (req, res) => {
       res.json(items)
     }
     else {
-      res.send({
+      res.status(204).send({
         message: 'No items have been found'
       })
     }
