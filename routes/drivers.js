@@ -54,6 +54,7 @@ router.register = (req, res) => {
           })
         }
         else {
+          const towns = req.body.preferredTowns
           let driver = new Driver()
           driver.fname = req.body.fname,
           driver.lname = req.body.lname,
@@ -71,7 +72,7 @@ router.register = (req, res) => {
             alat: req.body.alat,
             alng: req.body.alng
           })
-          driver.preferredTowns = req.body.preferredTowns
+          driver.preferredTowns.push(towns)
             
           driver.save(function (err) {
             if(err) {

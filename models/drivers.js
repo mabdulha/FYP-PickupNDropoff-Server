@@ -61,10 +61,7 @@ let DriverSchema = new mongoose.Schema({
       alng: {type: Number}
     }
   ],
-  preferredTowns: {
-    type: String,
-    required: false
-  }
+  preferredTowns: []
 },
 {
   collection: 'drivers'

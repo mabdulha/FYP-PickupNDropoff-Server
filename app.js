@@ -58,6 +58,7 @@ app.delete('/api/item/delete/:id', itemsRouter.deleteItem)
 // town routes
 app.get('/api/towns', townsRouter.findTown)
 app.get('/api/:county/towns', townsRouter.findTowns)
+app.get('/api/towns/all', townsRouter.findAllTowns)
 
 // county routes
 app.get('/api/counties/findall', countiesRouter.findAllCounties)

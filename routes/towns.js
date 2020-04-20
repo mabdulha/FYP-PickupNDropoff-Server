@@ -55,4 +55,19 @@ router.findTowns = (req, res) => {
   }).sort(mysort)
 }
 
+router.findAllTowns = (req, res) => {
+
+  let sortTowns = { town: 1 }
+  Town.find(function (err, towns) {
+    if (err) {
+      res.status(404).send({
+        errmsg: err
+      })
+    }
+    else {
+      res.send(JSON.stringify(towns, null, 5))
+    }
+  }).sort(sortTowns)
+}
+
 module.exports = router
