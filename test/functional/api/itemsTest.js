@@ -53,7 +53,7 @@ describe('Itemss',  () => {
         status: 'To Deliver'
       })
       const item = await Item.findOne({category: 'Furniture'})
-      validID = item._idFurniture
+      validID = item._id
     } catch (error) {
       console.log(error)
     }
