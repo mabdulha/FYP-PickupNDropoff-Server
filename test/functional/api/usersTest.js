@@ -6,7 +6,8 @@
 // const dotenv = require('dotenv')
 // dotenv.config()
 // const User = require('../../../models/users')
-// let server, validID
+// let server
+// let validID
 
 // describe('Userss',  () => {
 //   before(async () => {
@@ -21,15 +22,15 @@
 //     }
 //   })
 
-//   beforeEach(async () => {
+//   before(async () => {
 //     try {
-//       await User.deleteMany({user})
+//       await User.deleteMany({})
 //       await User.insertMany({
 //         fname: 'Mozeeb',
 //         lname: 'Abdulha',
 //         username: 'moz',
 //         email: 'ma@gmail.com',
-//         password: 'secret123',
+//         password: '$2b$10$EKazfbgretghvqDqbQcNheWo2fPlYSEbkpTvRXu4tkJiwXeSmIdSS',
 //         phone: '0897456321',
 //         aLine1: '10 High Street',
 //         aLine2: '',
@@ -42,7 +43,7 @@
 //         lname: 'Dolan',
 //         username: 'jcd',
 //         email: 'jd@gmail.com',
-//         password: 'helloworld',
+//         password: '$2b$10$EKazfbgretghvqDqbQcNheWo2fPlYSEbkpTvRXu4tkJiwXeSmIdSS',
 //         phone: '0836598741',
 //         aLine1: '5 Green Street',
 //         aLine2: 'Glenvale',
@@ -50,8 +51,8 @@
 //         aCounty: 'Kilkenny',
 //         aEircode: 'R95A8XO',
 //       })
-//       const user = await User.findOne({lastname: 'Abdulha'})
-//       validID = user._id
+//       const user = await User.findOne({lname: 'Abdulha'})
+//       validID = await user._id
 //     } catch (error) {
 //       console.log(error)
 //     }
@@ -84,34 +85,34 @@
 //     })
 //   })
 
-//   // describe('POST /api/users/login', () => {
-//   //   it('should login a user when the credentials are correct', () => {
-//   //     const credentials = {
-//   //       username: 'Genarcik',
-//   //       password: 'secret'
-//   //     }
-//   //     return request(server)
-//   //       .post('/api/users/login')
-//   //       .send(credentials)
-//   //       .expect(200)
-//   //       .then(res => {
-//   //         expect(res.body.message).equal('Successfully Authenticated')
-//   //       })
-//   //   })
-//   // })
+//   describe('POST /api/users/login', () => {
+//     it('should login a user when the credentials are correct', () => {
+//       const credentials = {
+//         username: 'moz',
+//         password: 'secret'
+//       }
+//       return request(server)
+//         .post('/api/users/login')
+//         .send(credentials)
+//         .expect(200)
+//         .then(res => {
+//           expect(res.body.message).equal('Successfully Authenticated')
+//         })
+//     })
+//   })
 
 //   describe('GET /api/user/:id', () => {
 //     describe('when the id is valid', () => {
 //       it('should return the user matching the id', done => {
-//         console.log(validID)
+//         console.log('Get users id' + validID)
 //         request(server)
 //           .get(`/api/user/${validID}`)
 //           .set('Accept', 'application/json')
 //           .expect('Content-Type', /json/)
 //           .expect(200)
 //           .end((err, res) => {
-//             expect(res.body[0]).to.have.property('fname', 'Used Wardrobe')
-//             expect(res.body[0]).to.have.property('lname', 'Wooden')
+//             expect(res.body).to.have.property('fname', 'Kamil')
+//             expect(res.body).to.have.property('lname', 'Bigos')
 //             done(err)
 //           })
 //       })
