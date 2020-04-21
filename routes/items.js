@@ -125,6 +125,8 @@ router.addItem = (req, res) => {
 }
 
 router.updateItem = (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+
   Item.findById(req.params.id, function (err, item) {
     if (err) {
       res.status(404).send({
