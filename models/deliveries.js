@@ -1,6 +1,9 @@
 let mongoose = require('mongoose')
 
 let DeliverySchema = new mongoose.Schema({
+  title: {
+    type: String
+  },
   size: {
     type: String,
   },
@@ -34,7 +37,7 @@ let DeliverySchema = new mongoose.Schema({
   dEircode: {
     type: String,
   },
-  buyerID: {
+  itemID: {
     type: mongoose.Schema.Types.ObjectId
   },
   buyerName: {
@@ -48,9 +51,6 @@ let DeliverySchema = new mongoose.Schema({
   },
   estCharge: {
     type: Number
-  },
-  sellerID: {
-    type: mongoose.Schema.Types.ObjectId
   },
   sellerName: {
     type: String

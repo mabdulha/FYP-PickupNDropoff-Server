@@ -6,6 +6,7 @@ router.addDelivery = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
   let delivery = new Delivery()
+  delivery.title = req.body.title
   delivery.size = req.body.size
   delivery.pLine1 = req.body.pLine1
   delivery.pLine2 = req.body.pLine2
@@ -17,12 +18,14 @@ router.addDelivery = (req, res) => {
   delivery.dTown = req.body.dTown
   delivery.dCounty = req.body.dCounty 
   delivery.dEircode = req.body.dEircode,
+  delivery.itemID = req.body.itemID
   delivery.buyerID = req.body.buyerID
   delivery.buyerName = req.body.buyerName
   delivery.buyerNumber = req.body.buyerNumber
   delivery.sellerID = req.body.sellerID
   delivery.sellerName = req.body.sellerName
   delivery.sellerNumber = req.body.sellerNumber
+  delivery.driverID = req.body.driverID
   delivery.estCharge = req.body.estCharge
   delivery.pdatetime = req.body.pdatetime
   delivery.ddatetime = req.body.ddatetime
@@ -54,6 +57,9 @@ router.updateDelivery = (req, res) => {
       })
     }
     else {
+      if(req.body.title) {
+        delivery.title = req.body.title
+      }
       if (req.body.size) {
         delivery.size = req.body.size
       }
@@ -104,6 +110,9 @@ router.updateDelivery = (req, res) => {
       }
       if (req.body.sellerNumber) {
         delivery.sellerNumber = req.body.sellerNumber
+      }
+      if (req.body.driverID) {
+        delivery.driverID = req.body.driverID
       }
       if (req.body.estCharge) {
         delivery.estCharge = req.body.estCharge

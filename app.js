@@ -47,7 +47,6 @@ app.post('/api/drivers/login', driversRouter.login)
 app.get('/api/items/findall', itemsRouter.findAll)
 app.get('/api/item/:id', itemsRouter.findOne)
 app.get('/api/user/:userID/items', itemsRouter.findItemByUser)
-app.get('/api/items/find/:town/fordelivery', itemsRouter.findItemForDelivery)
 
 app.post('/api/item/add', itemsRouter.addItem)
 
@@ -65,7 +64,11 @@ app.get('/api/towns/all', townsRouter.findAllTowns)
 app.get('/api/counties/findall', countiesRouter.findAllCounties)
 
 // delivery routes
+app.get('/api/deliveries/find/:town', deliveriesRouter.findItemForDelivery)
+
 app.post('/api/delivery/add', deliveriesRouter.addDelivery)
+
+app.put('/api/delivery/update/:id', deliveriesRouter.updateDelivery)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
