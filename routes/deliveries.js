@@ -7,6 +7,7 @@ router.addDelivery = (req, res) => {
 
   let delivery = new Delivery()
   delivery.title = req.body.title
+  delivery.status = req.body.status
   delivery.size = req.body.size
   delivery.pLine1 = req.body.pLine1
   delivery.pLine2 = req.body.pLine2
@@ -59,6 +60,9 @@ router.updateDelivery = (req, res) => {
     else {
       if(req.body.title) {
         delivery.title = req.body.title
+      }
+      if (req.body.status) {
+        delivery.status = req.body.status
       }
       if (req.body.size) {
         delivery.size = req.body.size
@@ -148,7 +152,8 @@ router.findItemForDelivery = (req, res) => {
   let townArray = cleanTown.split(',')
   Delivery.find({
     dTown: { $in: townArray },
-    pTown: { $in: townArray }
+    pTown: { $in: townArray },
+    status: 'Available'
   }, (err, deliveries) => {
     if (err) {
       res.status(404).send({

@@ -4,6 +4,9 @@ let DeliverySchema = new mongoose.Schema({
   title: {
     type: String
   },
+  status: {
+    type: String
+  },
   size: {
     type: String,
   },

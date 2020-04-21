@@ -1,7 +1,7 @@
 let express = require('express')
 let router = express.Router()
 let Driver = require('../models/drivers')
-let Item = require('../models/items')
+let Delivery = require('../models/deliveries')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 let dotenv = require('dotenv')
@@ -165,7 +165,7 @@ router.findDeliveriesByDriver = (req, res) => {
         errmsg: err
       })
     } else {
-      Item.find({
+      Delivery.find({
         driverID: driver._id
       }, function (err, items) {
         if (err) {
