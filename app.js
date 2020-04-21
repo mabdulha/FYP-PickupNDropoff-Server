@@ -12,6 +12,7 @@ let driversRouter = require('./routes/drivers')
 let itemsRouter = require('./routes/items')
 let townsRouter = require('./routes/towns')
 let countiesRouter = require('./routes/counties')
+let deliveriesRouter = require('./routes/deliveries')
 
 let app = express()
 
@@ -62,6 +63,9 @@ app.get('/api/towns/all', townsRouter.findAllTowns)
 
 // county routes
 app.get('/api/counties/findall', countiesRouter.findAllCounties)
+
+// delivery routes
+app.post('/api/delivery/add', deliveriesRouter.addDelivery)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
