@@ -61,13 +61,8 @@ router.findItemByUser = (req, res) => {
         if (err) {
           res.status(404).send(err)
         }
-        else if (items.length > 0) {
-          res.send(items)
-        }
         else {
-          res.status(204).send({
-            message: 'No items for the given user id'
-          })
+          res.send(items)
         }
       })
     }
