@@ -23,7 +23,7 @@ stages:
 install_dependencies:
     stage: install
     script:
-      - npm rebuild
+      - npm install
     artifacts:
       paths:
         - node_modules/
