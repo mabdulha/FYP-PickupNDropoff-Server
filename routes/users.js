@@ -17,7 +17,12 @@ router.findOne = (req, res) => {
         message: 'User not found',
         errmsg: err
       })
-    } else {
+    } else if (user.length === 0) {
+      res.status(204).send({
+        message: 'user doesnt exist'
+      })
+    } 
+    else {
       res.send(JSON.stringify(user, null, 5))
     }
   })

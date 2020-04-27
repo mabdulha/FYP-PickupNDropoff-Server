@@ -11,7 +11,13 @@ router.findAll = (req, res) => {
   } ,function (err, items) {
     if (err) {
       res.status(404).send(err)
-    } else {
+    } 
+    else if (items.length === 0) {
+      res.status(204).send({
+        message: 'No items in the database'
+      })
+    } 
+    else {
       res.send(JSON.stringify(items, null, 5))
     }
   })
@@ -28,7 +34,13 @@ router.findOne = (req, res) => {
         message: 'Item not found',
         errmsg: err
       })
-    } else {
+    } 
+    else if (items.length === 0) {
+      res.status(204).send({
+        message: 'Item doesnt exist'
+      })
+    } 
+    else {
       res.send(JSON.stringify(items, null, 5))
     }
   })
@@ -269,8 +281,13 @@ router.findItemForDelivery = (req, res) => {
         errmsg: err
       })
     }
-    else {
+    else if (items.length > 0) {
       res.json(items)
+    }
+    else {
+      res.status(204).send({
+        message: 'No items have been found'
+      })
     }
   })
 }

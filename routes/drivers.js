@@ -11,14 +11,19 @@ router.findOne = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
   Driver.findOne({
-    _id: req.params.id
+    '_id': req.params.id
   }, function (err, driver) {
     if (err) {
       res.status(404).send({
         message: 'Driver not found',
         errmsg: err
       })
-    } else {
+    } else if (driver.length === 0) {
+      res.status(204).send({
+        message: 'Driver doesnt exist'
+      })
+    } 
+    else {
       res.send(JSON.stringify(driver, null, 5))
     }
   })

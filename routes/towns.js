@@ -14,7 +14,13 @@ router.findTowns = (req, res) => {
         message: 'No Towns Found',
         errmsg: err
       })
-    } else {
+    }
+    else if (towns.length === 0) {
+      res.status(204).send({
+        message: 'Cannot find any towns'
+      })
+    }
+    else {
       res.send(JSON.stringify(towns, null, 5))
     }
   }).sort(mysort)
