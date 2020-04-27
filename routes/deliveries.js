@@ -160,13 +160,8 @@ router.findItemForDelivery = (req, res) => {
         errmsg: err
       })
     }
-    else if (deliveries.length > 0) {
-      res.json(deliveries)
-    }
     else {
-      res.status(204).send({
-        message: 'No deliveries have been found'
-      })
+      res.json(deliveries)
     }
   })
 }

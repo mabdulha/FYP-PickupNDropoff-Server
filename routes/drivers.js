@@ -18,12 +18,7 @@ router.findOne = (req, res) => {
         message: 'Driver not found',
         errmsg: err
       })
-    } else if (driver.length === 0) {
-      res.status(204).send({
-        message: 'Item doesnt exist'
-      })
-    } 
-    else {
+    } else {
       res.send(JSON.stringify(driver, null, 5))
     }
   })

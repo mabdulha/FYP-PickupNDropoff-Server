@@ -1,35 +1,6 @@
 let express = require('express')
 let router = express.Router()
 let Town = require('../models/towns')
-let Fuse = require('fuse.js')
-
-router.findTown = (req, res) => {
-
-  Town.find(function (err, counties) {
-    if (err) {
-      res.send(err)
-    }
-    else {
-      let options = {
-        keys: ['county'],
-        threshold: 0.0
-      }
-
-      let fuse = new Fuse(counties, options)
-      let county = req.body.county
-      let towns = fuse.search(county)
-    
-      if (towns.length === 0) {
-        res.json({
-          message: 'No Query'
-        })
-      }
-      else {
-        res.json(towns)
-      }
-    }
-  })
-}
 
 router.findTowns = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
@@ -43,13 +14,7 @@ router.findTowns = (req, res) => {
         message: 'No Towns Found',
         errmsg: err
       })
-    }
-    else if (towns.length === 0) {
-      res.status(204).send({
-        message: 'Cannot find any towns'
-      })
-    }
-    else {
+    } else {
       res.send(JSON.stringify(towns, null, 5))
     }
   }).sort(mysort)
