@@ -34,13 +34,7 @@ router.findOne = (req, res) => {
         message: 'Item not found',
         errmsg: err
       })
-    } 
-    else if (items.length === 0) {
-      res.status(204).send({
-        message: 'Item doesnt exist'
-      })
-    } 
-    else {
+    } else {
       res.send(JSON.stringify(items, null, 5))
     }
   })
