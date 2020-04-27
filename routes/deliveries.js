@@ -151,9 +151,9 @@ router.findItemForDelivery = (req, res) => {
   let cleanTown = req.params.town.replace('%20', ' ')
   let townArray = cleanTown.split(',')
   Delivery.find({
+    status: 'Available for Delivery',
     dTown: { $in: townArray },
     pTown: { $in: townArray },
-    status: 'Available'
   }, (err, deliveries) => {
     if (err) {
       res.status(404).send({

@@ -26,10 +26,7 @@ let DriverSchema = new mongoose.Schema({
     required: true,
     match: /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
   },
-  license: {
-    type: String,
-    required: true
-  },
+  license: [],
   size: {
     type: String,
     required: true
